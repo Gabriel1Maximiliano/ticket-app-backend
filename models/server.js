@@ -19,6 +19,10 @@ class Server {
         //configuración del  socket
         this.io = socketio( this.server ,{ pingTimeout: 60000/* configuraciones */ });
 
+        //inicializar sockets
+
+        this.sockets = new Sockets( this.io );
+
     }
 
 middlewares() {
@@ -28,17 +32,25 @@ middlewares() {
 this.app.use( express.static( path.resolve( __dirname + '../../public') ));
 //
 this.app.use( cors() );
+
+this.app.use('/last', (req, res) => {
+
+    res.json({
+        ok:true,
+        last:this.sockets.ticketList.last13,
+    })
+})
     }
-socketConfig() {
-    new Sockets( this.io );
-}
+// socketConfig() {
+//     new Sockets( this.io );
+// }
 
     execut() {
 // inicializar middlewares
         this.middlewares();
 
 // inicializar sockets 
-this.socketConfig();        
+//this.socketConfig();        
 
 // inicializar server
       this.server.listen(this.port, () => {

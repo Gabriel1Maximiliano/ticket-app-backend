@@ -17,9 +17,20 @@ class Sockets {
           
 
           socket.on('request-ticket', ( data,callback ) => {
-
+            
            const newTicket = this.ticketList.createTicket();
            callback( newTicket );
+           
+          });
+          socket.on('next-ticket-to-work', ( user,callback ) => {
+
+            const { agente, escritorio } = user;
+
+            const yourTicket = this.ticketList.assingTicket( agente, escritorio );
+          
+           callback( yourTicket );
+
+           this.io.emit( 'ticket-assigned' , this.ticketList.last13 ); 
            
           })
 
