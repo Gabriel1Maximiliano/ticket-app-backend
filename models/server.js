@@ -32,7 +32,7 @@ middlewares() {
 
 this.app.use( express.static( path.resolve( __dirname + '../../public') ));
 //
-var whitelist = ['https://ticket-app-backend.vercel.app/', '*']
+var whitelist = ['https://ticket-app-backend.vercel.app/', 'https://ticket-app-fron.vercel.app/']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
