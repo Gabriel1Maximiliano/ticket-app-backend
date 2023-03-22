@@ -32,16 +32,10 @@ middlewares() {
 
 this.app.use( express.static( path.resolve( __dirname + '../../public') ));
 //
-var whitelist = ['https://ticket-app-backend.vercel.app/', 'https://ticket-app-fron.vercel.app/']
 var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
+    origin: 'https://ticket-app-backend.vercel.app/',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
   }
-}
 this.app.use( cors( corsOptions ) );
 
 this.app.use((req,res,next)=>{
