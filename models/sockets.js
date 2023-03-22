@@ -17,7 +17,7 @@ class Sockets {
           
 
           socket.on('request-ticket', ( data,callback ) => {
-            
+            console.log(data)
            const newTicket = this.ticketList.createTicket();
            callback( newTicket );
            

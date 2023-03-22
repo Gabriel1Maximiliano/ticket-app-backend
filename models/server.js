@@ -34,6 +34,13 @@ this.app.use( express.static( path.resolve( __dirname + '../../public') ));
 //
 this.app.use( cors() );
 
+this.app.use((req,res,next)=>{
+    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
+    res.setHeader('Access-Control-Allow-Methods','Content-Type','Authorization');
+    next(); 
+})
+
 this.app.use('/last', (req, res) => {
 
     res.json({
