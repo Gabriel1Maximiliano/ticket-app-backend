@@ -18,12 +18,7 @@ class Server {
         // configuracion de sockets
         this.server = http.createServer( this.app );  
         //configuración del  socket
-        this.io = socketio( this.server ,{ pingTimeout: 60000, cors: {
-            origin: "*",
-            methods: ["GET", "POST"],
-            allowedHeaders: ["*"],
-            credentials: true
-          } });
+        this.io = socketio( this.server ,{ pingTimeout: 60000 });
 
         //inicializar sockets
 
@@ -37,14 +32,11 @@ middlewares() {
 
 this.app.use( express.static( path.resolve( __dirname + '../../public') ));
 //
-var corsOptions = {
-    origin: 'https://ticket-app-fron.vercel.app/',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-  }
-this.app.use( cors( corsOptions ) );
+
+this.app.use(cors({ origin: "*" }));
 
 this.app.use((req,res,next)=>{
-    res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
