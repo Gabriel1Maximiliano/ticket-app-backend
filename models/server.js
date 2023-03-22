@@ -1,7 +1,7 @@
 const express  = require('express');
 const path     = require('path');
 const http     =  require('http');
-const socketio =  require("socket.io")
+const socketio = require('socket.io')
 const  Sockets = require('./sockets');
 const cors     = require('cors');
 require('dotenv').config();
@@ -18,10 +18,10 @@ class Server {
         // configuracion de sockets
         this.server = http.createServer( this.app );  
         //configuración del  socket
-        this.io = socketio( this.server ,{ pingTimeout: 60000,
+        this.io = socketio( this.server ,{
             cors: {
-                origin: "*",
-               
+                origin: `*`,
+                methods: ['GET', 'POST']
               } });
 
         //inicializar sockets
