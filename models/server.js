@@ -18,7 +18,11 @@ class Server {
         // configuracion de sockets
         this.server = http.createServer( this.app );  
         //configuración del  socket
-        this.io = socketio( this.server ,{ pingTimeout: 60000 });
+        this.io = socketio( this.server ,{ pingTimeout: 60000,
+            cors: {
+                origin: "*",
+               
+              } });
 
         //inicializar sockets
 
