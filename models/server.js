@@ -21,7 +21,6 @@ class Server {
         this.io = socketio( this.server ,{
             cors: {
                 origin: `*`,
-                methods: ['GET', 'POST']
               } });
 
         //inicializar sockets
